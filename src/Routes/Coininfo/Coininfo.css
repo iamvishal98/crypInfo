@@ -1,0 +1,84 @@
+.coin_container .content {
+    max-width: 1250px;
+    margin: 1rem auto;
+    padding: .5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #26272b;
+    box-shadow: 0px 0px 12px #18191b;
+    border-radius: 10px;
+
+}
+
+.rank {
+    margin: .5rem 0;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.info .coin_heading {
+    display: flex;
+    align-items: center;
+    margin: .5rem 0;
+}
+
+.info .coin_heading p {
+    margin-left: 0.5rem;
+}
+
+.info .coin_price{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    margin: 0.5rem 0;
+}
+
+th {
+    background-color: #333;
+}
+
+th , td {
+    padding: 5px;
+    text-align: center;
+}
+
+.coin_stat {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+}
+
+.coin_stat .row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #118c4f;
+    padding: 0.5rem 0;
+}
+
+.about h3 {
+    margin: 0.5rem 0;
+}
+
+@media screen and (max-width:720px) {
+    .coin_container .content {
+        margin: 0.5rem;
+    }
+
+    .coin_stat {
+        grid-template-columns: 1fr;
+    }
+
+    th , td {
+        padding: 1px;
+    }
+    table {
+        font-size: 0.7rem;
+    }
+    
+}
