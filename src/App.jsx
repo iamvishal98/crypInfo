@@ -1,15 +1,18 @@
-import React ,{ useState,useEffect } from 'react';
+import React ,{ useState,useEffect, useContext } from 'react';
 import { Route,Routes  } from 'react-router-dom';
 import axios from 'axios';
 import Coin from './components/Coin/Coin';
 import Navbar from './components/Navbar/Navbar';
-import Pagination from './components/Pagination/Pagination';
 import Coininfo from './Routes/Coininfo/Coininfo';
+import Sort from './components/Sort/Sort';
+import { Content } from './Context';
 
 function App() {
 
   const [data,setData] = useState([]);
-  const URL='https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=50&page=1&sparkline=false';
+  const {currency} = useContext(Content);
+  const URL=`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=false`;
+
 
 
   const [currentPage,setCurrentPage] = useState(1);
@@ -25,7 +28,7 @@ function App() {
     }).catch((err)=>{
       console.log(err);
     })
-  },[]);
+  },[currency]);
 
   const currentPageData = data.slice(firstIndex,lastIndex)
 
@@ -34,6 +37,7 @@ function App() {
   return (
     <>
     <Navbar/>
+    <Sort/>
     <Routes>
       <Route path='/' element=
         {<Coin coindata={currentPageData}  dataPerPage={dataPerPage}   
@@ -43,9 +47,6 @@ function App() {
         <Route path=':coinId' element={<Coininfo/>}/>
       </Route>
     </Routes>
-  {/*   <Pagination totalPages={data.length} dataPerPage={dataPerPage} setCurrentPage={setCurrentPage} 
-    currentPage={currentPage}
-  /> */}
     </>
   )
 }
