@@ -10,8 +10,8 @@ import { Content } from './Context';
 function App() {
 
   const [data,setData] = useState([]);
-  const {currency} = useContext(Content);
-  const URL=`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=false`;
+  const {currency,order} = useContext(Content);
+  const URL=`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=${order}&per_page=50&page=1&sparkline=false`;
 
 
 
@@ -26,9 +26,9 @@ function App() {
     axios.get(URL).then((res) => {
       setData(res.data);
     }).catch((err)=>{
-      console.log(err);
+      alert(err.response.data.error);
     })
-  },[currency]);
+  },[currency,order]);
 
   const currentPageData = data.slice(firstIndex,lastIndex)
 
